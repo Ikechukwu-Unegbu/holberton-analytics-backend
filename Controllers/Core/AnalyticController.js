@@ -4,4 +4,5 @@ class AnalyticController{
     }
 }
 
-module.export = AnalyticController;
+
+export default new AnalyticController();

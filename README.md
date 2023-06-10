@@ -12,7 +12,7 @@ This is Backend of a web analytics application. This applications tracks traffic
 
 
 ## API and Integration Documentation
-This documentation contains API integration detailing how to frontend of this project was integrated to the backend. 
+This documentation contains API integration detailing how frontend of this project was integrated to the backend. 
 
 Words on the application architecture and thought experiments.
 

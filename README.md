@@ -16,7 +16,7 @@ This documentation contains API integration detailing how frontend of this proje
 
 Words on the application architecture and thought experiments.
 
-More importantly, there is also integration doc detailing how to integrate Holberton Analytics into your web projects. [**ReatJs**](https://create-react-app.dev/)
+More importantly, there is also integration doc detailing how to integrate Holberton Analytics into your web projects. [**Click here for docs**](https://github.com/Ikechukwu-Unegbu/holberton-analytics-backend/tree/main/.doc)
 
 
 

@@ -7,27 +7,28 @@ The user do not need to type in their email. FE should fill that in from user st
     Method: 'POST',
     Headers: 'Accept: application/json',
     Bearer Token: - Token
-    Body:
+    Body:  
     {
         "name":"My blog",
         "url":"www.luciablog.com",
         "owner":"Lucia@gmail.com",
         "primary":"no"
-    }
+    }  
+
     
 #### Response 
-  {
-    "message": "Site created successfully",
-    "site": {
-        "name": "PN Okeke",
-        "url": "www.luciablog.com",
-        "owner": "Lucia@gmail.com",
-        "primary": "no",
-        "deleted": false,
-        "_id": "64849cd2baf3f55f74226d30",
-        "createdAt": "2023-06-10T15:54:58.757Z",
-        "updatedAt": "2023-06-10T15:54:58.757Z",
-        "__v": 0
+    {
+        "message": "Site created successfully",
+        "site": {
+            "name": "PN Okeke",
+            "url": "www.luciablog.com",
+            "owner": "Lucia@gmail.com",
+            "primary": "no",
+            "deleted": false,
+            "_id": "64849cd2baf3f55f74226d30",
+            "createdAt": "2023-06-10T15:54:58.757Z",
+            "updatedAt": "2023-06-10T15:54:58.757Z",
+            "__v": 0
+        }
     }
-}
 

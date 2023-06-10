@@ -1,4 +1,5 @@
 import dbClient from "../../Utils/db.js"
+import SiteModel from '../../Models/Core/SiteModel.js'
 
 class SiteController{
   
@@ -23,31 +24,34 @@ class SiteController{
           res.status(200).json(sites);
         } catch (error) {
           console.error(error);
-          res.status(500).json({ message: 'Internal Server Error' });
+          res.status(500).json({ message: 'Internal Server Error:' });
         }
     }
       
 
     async createSite(req, res) {
-        try {
-          const { name, url } = req.body;
-          // Get the sites collection from the connected database
-          const sitesCollection = dbClient.db.collection("sites");
-          // Create a new site document
-          const newSite = {
-            name,
-            url,
-            primar
-          };
-          // Insert the new site document into the sites collection
-          const result = await sitesCollection.insertOne(newSite);    
-          // Send a success response
-          res.status(201).json({ message: "Site created successfully", siteId: result.insertedId });
-        } catch (error) {
-          console.error("Error creating site:", error);
-          res.status(500).json({ error: "Failed to create site" });
-        }
+      const { name, url, primary, owner} = req.body;
+      if(!name || !url || !primary){
+        return res.status(400).json({ message: 'Please fill in all required fields' });
       }  
+      try {
+        const newsite = new SiteModel({
+          url:url,
+          owner: owner, 
+          primary:primary,
+          name: name
+        })    
+        const createdStie = await newsite.save();
+
+        res.status(201).json({ 
+          message: "Site created successfully",  
+          site: createdStie
+        });
+      } catch (error) {
+          console.error("Error creating site:", error);
+          res.status(500).json({ error: "Failed to create site:"+error });
+      }
+    }  
         
     
 }

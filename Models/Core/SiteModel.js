@@ -6,6 +6,10 @@ class Site {
   constructor() {
     const siteSchema = new Schema(
       {
+        name:{
+          type:String,
+          required:true,
+        },
         url: {
           type: String,
           required: [true, 'Enter full url'],
@@ -14,13 +18,14 @@ class Site {
           type: String,
           required: [true]
         },
-        Primary: {
+        primary: {
           type: String,
           required: true,
         },
         deleted: {
             type: Boolean,
             default: false,
+            required:false 
           },
       },
       {

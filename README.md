@@ -11,6 +11,13 @@ This is Backend of a web analytics application. This applications tracks traffic
 **Frontend** - [ReatJs](https://create-react-app.dev/), [BootStrap](https://react-bootstrap.netlify.app/),  [TypeScript](https://www.typescriptlang.org/)  
 
 
+## API and Integration Documentation
+This documentation contains API integration detailing how to frontend of this project was integrated to the backend. 
+
+More importantly, there is also integration doc detailing how to integrate Holberton Analytics into your web projects. **Click here to read doc** - [ReatJs](https://create-react-app.dev/)
+
+
+
 ## Author 
 **Ikechukwu Vincent - Full Stack Software Engineer**  
 [LinkedIn](https://www.linkedin.com/in/ikechukwu-vincent-002934176/)  

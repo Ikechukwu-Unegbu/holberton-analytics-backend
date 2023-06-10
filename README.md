@@ -14,7 +14,9 @@ This is Backend of a web analytics application. This applications tracks traffic
 ## API and Integration Documentation
 This documentation contains API integration detailing how to frontend of this project was integrated to the backend. 
 
-More importantly, there is also integration doc detailing how to integrate Holberton Analytics into your web projects. **Click here to read doc** - [ReatJs](https://create-react-app.dev/)
+Words on the application architecture and thought experiments.
+
+More importantly, there is also integration doc detailing how to integrate Holberton Analytics into your web projects. [**ReatJs**](https://create-react-app.dev/)
 
 
 

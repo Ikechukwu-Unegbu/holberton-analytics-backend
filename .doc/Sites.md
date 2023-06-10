@@ -8,6 +8,7 @@ The user do not need to type in their email. FE should fill that in from user st
     Headers: 'Accept: application/json',
     Bearer Token: - Token
     Body:  
+    
     {
         "name":"My blog",
         "url":"www.luciablog.com",

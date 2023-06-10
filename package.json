@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is Backend of a web analytics application. This applications tracks traffic of registered websites and provides insight into user interaction with the site in real time. The inspiration behind this project was to gain deeper understanding into how giant services like server monitoring and web analytic tool work.",
   "main": "APPCONFIG.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
@@ -24,6 +24,7 @@
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.6.0",
     "mongoose": "^7.2.2"
   },
   "devDependencies": {

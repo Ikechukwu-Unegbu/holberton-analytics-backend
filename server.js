@@ -1,13 +1,15 @@
 import express from 'express'
 import mongoose from 'mongoose'
 const app = express()
-// import AnalyticController from './Controllers/Core/AnalyticController.js';
 import indexRouter from './Routes/index.js';
-// const 
+import adminRouter from './Routes/admin.js';
+
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(indexRouter)
+app.use(adminRouter)
+
 
 
 mongoose.set("strictQuery", false)

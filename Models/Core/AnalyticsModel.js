@@ -5,6 +5,34 @@ const { Schema } = mongoose;
 class Analytics {
   constructor() {
     
+    const SpeedSchema = new Schema({
+      page_loadtime:{ 
+        type:Schema.Types.Mixed,
+        required:false,
+      },
+      fcp:{
+        type:Schema.Types.Mixed,
+        required:false, 
+      }, 
+      tti:{
+        type: Schema.Types.Mixed, 
+        required:false, 
+      }, 
+      fmp:{
+        type: Schema.Types.Mixed,
+        required:false
+      },
+      loadeventime:{
+        type:Schema.Types.Mixed,
+        required:false,
+      },
+      tps:{
+        type: Schema.Types.Mixed, 
+        required:false
+      },
+    });
+
+
     const PageSchema = new Schema({
         page_url: {
           type: String,
@@ -16,17 +44,17 @@ class Analytics {
         },
         page_number:{
             type:Number,
-            required:true,
+            required:false,
             default:1
         },
         performance: {
-            type: Number,
+            type: [SpeedSchema],
             required: false,
         },
-        speed: {
-            type: Number,
-            required: false,
-        },
+        // speed: {
+        //     type: [SpeedSchema],
+        //     required: false,
+        // },
     });
 
     const RequestSchema = new Schema({
@@ -36,45 +64,57 @@ class Analytics {
         },
         request_returns:{
             type:String, 
-            required:true,
+            required:false,
             default:1
         },
         request_durations:{
             type:[Number],
-            required:true,
+            required:false,
             default:0
         },
         expiration: {
             type: Date,
-            required: true,
+            required: false,
         },
     })
 
     const AnalyticsSchema = new Schema(
       {
-        request: [RequestSchema]
+        owner:{
+          type:String, 
+          required:true,
+        },
+        site:{
+          type:String,
+          required:true 
+        },
+        request: [RequestSchema],
         referral: {
             type: String,
             required: [false],
         },
-        primary: {
-          type: Number,
-          required: true,
-          default:1
+       user_os:{
+        type: Schema.Types.Mixed,
+        required: true,
+        default: {},
+       },
+        user_browser:{
+          type:String, 
+          required:false,
         },
-        user_agent:{
-         type:String, 
-         required:true,   
+        user_device:{
+          type:String,
+          required:false
         },
         geoLocation: {
             type: {
               type: String,
               enum: ['Point'],
-              required: true,
+              required: false,
             },
             coordinates: {
               type: [Number],
-              required: true,
+              required: false,
             },
         },
         pages: [PageSchema],
@@ -84,7 +124,7 @@ class Analytics {
         timestamps: true,
       }
     );
-    AnalyticsSchema.index({ geoLocation: '2dsphere' });
+    // AnalyticsSchema.index({ geoLocation: '2dsphere' });
     this.model = mongoose.model('Analytics', AnalyticsSchema);
   }
 }

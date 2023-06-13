@@ -12,7 +12,7 @@ const indexRouter = Router()
 
 indexRouter.get('/', (req, res) => {
     // console.log(dbClient.db)
-    res.send('Hello NODE API') 
+    res.json({message:'Hello NODE API'}) 
 })
 indexRouter.get('/test', AnalyticController.getDashboard);
 indexRouter.post('/post_site/:username', SiteController.createSite)
@@ -20,5 +20,11 @@ indexRouter.get('/all-sites/:username', SiteController.getSites)
 
 // User reg
 indexRouter.post('/register', RegisterController.createUser)
+
+// Analytics
+indexRouter.post('/register-load/:userid/:requestid', AnalyticController.registerLoad)
+indexRouter.post('/register-event/:user/:requestid', AnalyticController.registerClick)
+
+
 
 export default indexRouter;

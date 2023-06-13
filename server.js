@@ -1,14 +1,17 @@
-import express from 'express'
-import mongoose from 'mongoose'
-const app = express()
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
 import indexRouter from './Routes/index.js';
 import adminRouter from './Routes/admin.js';
 
+const app = express();
 
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
-app.use(indexRouter)
-app.use(adminRouter)
+app.use(cors()); // Enable CORS before any routes
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(indexRouter);
+app.use(adminRouter);
 
 
 

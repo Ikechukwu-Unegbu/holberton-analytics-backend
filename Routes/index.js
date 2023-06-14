@@ -1,4 +1,5 @@
 import { Router } from "express";
+import VerifyToken from "../Middlewares/VerifyTokenMiddleware.js";
 import RecordAnalyticsController from "../Controllers/Core/RecordAnalyticsController.js"
 import SiteController from '../Controllers/Core/SiteController.js'
 import AuthController from "../Controllers/Auth/AuthController.js";

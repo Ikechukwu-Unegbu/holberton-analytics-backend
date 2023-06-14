@@ -2,7 +2,7 @@
 
 The user do not need to type in their email. FE should fill that in from user state. **Primary** which takes in yes or no is a key to determine if the given site is the user's main website. This is the site whose analytics will show by default.
 
- Make a post request to this endpoint
+    Make a post request to this endpoint
     url: 'https://domainname/post_site/{username}',
     Method: 'POST',
     Headers: 'Accept: application/json',

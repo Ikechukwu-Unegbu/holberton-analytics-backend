@@ -1,15 +1,14 @@
 import mongoose from 'mongoose';
-import crypto from 'crypto';
 
 const { Schema } = mongoose;
 
 class AccessToken {
   constructor() {
-    const AccessTokenSchema = new Schema(
+    const accessTokenSchema = new Schema(
       {
         name: {
           type: String,
-          required: false,
+          required: [false],
         },
         owner: {
           type: String,
@@ -38,26 +37,24 @@ class AccessToken {
       }
     );
 
-    this.model = mongoose.model('AccessToken', AccessTokenSchema);
+    this.model = mongoose.model('AccessToken', accessTokenSchema);
   }
 
-  // Static method to generate an access token
-  static generateAccessToken() {
-    const token = crypto.randomBytes(32).toString('hex');
+  async generateAccessToken(owner, type) {
+    const token = new this.model({
+      owner,
+      token: generateRandomToken(), // Replace with your token generation logic
+      token_type:type,// Example: set token_type as 'api'
+      token_expiration: calculateTokenExpiration(), // Replace with your token expiration calculation logic
+    });
+
     return token;
   }
-
-  
-  static async authenticate(token) {
-    try {
-      const accessToken = await this.model.findOne({ token });
-      return accessToken !== null;
-    } catch (error) {
-      console.error('Error authenticating access token:', error);
-      return false;
-    }
-  }
-
 }
 
 export default new AccessToken().model;
+
+
+
+
+

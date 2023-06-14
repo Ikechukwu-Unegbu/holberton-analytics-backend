@@ -17,6 +17,20 @@ class AnalyticsHelper{
           return "unknown";
         }
     } 
+
+    getUseridAndSiteidFromUrl(url){
+      
+      // Parse the URL using the URL module
+      const parsedUrl = new URL(url);
+    
+      // Get the path segments of the URL
+      const pathSegments = parsedUrl.pathname.split('/');
+    
+      // Get the last two values from the path segments
+      const userid = pathSegments[pathSegments.length - 2];
+      const siteid = pathSegments[pathSegments.length - 1];
+      return [userid, siteid]
+    }
       
 }
 

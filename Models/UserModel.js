@@ -29,6 +29,12 @@ class User {
       }
     );
 
+    // Add the authenticate method to the userSchema
+    userSchema.methods.authenticate = async function (password) {
+      // Compare the provided password with the stored password
+      return this.password === password;
+    };
+
     this.model = mongoose.model('User', userSchema);
   }
 }

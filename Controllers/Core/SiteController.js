@@ -1,33 +1,30 @@
-import dbClient from "../../Utils/db.js"
+// import dbClient from "../../Utils/db.js"
+import UserModel from '../../Models/UserModel.js';
 import SiteModel from '../../Models/Core/SiteModel.js'
 
 class SiteController{
   
-    async getSites(req, res) {
-        const { username } = req.params;
-        const { page } = req.query;
-        const limit = 10;
-        const skip = (page - 1) * limit;
-      
-        try {
-          // Fetch the user by username to obtain the user ID
-          const usersCollection = dbClient.db.collection('users');
-          const user = await usersCollection.findOne({ username });
-          if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-          }
-          const userId = user._id;
-      
-          const sitesCollection = dbClient.db.collection('sites');
-          const sites = await sitesCollection.find({ owner: userId }).skip(skip).limit(limit).toArray();
-      
-          res.status(200).json(sites);
-        } catch (error) {
-          console.error(error);
-          res.status(500).json({ message: 'Internal Server Error:' });
-        }
+  async getSites(req, res) {
+    const { userid } = req.params;
+
+    try {
+      // Fetch the user with the given userid
+      const user = await UserModel.findById(userid);
+
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Fetch all sites where the owner's email matches the user's email
+      const sites = await SiteModel.find({ owner: user.email });
+
+      res.json(sites);
+    } catch (error) {
+      console.error("Error fetching sites:", error);
+      res.status(500).json({ error: "Failed to fetch sites" });
     }
-      
+  }
+
 
     async createSite(req, res) {
       const { name, url, primary, owner} = req.body;

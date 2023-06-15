@@ -17,7 +17,7 @@ indexRouter.get('/', (req, res) => {
 })
 indexRouter.get('/test', RecordAnalyticsController.getDashboard);
 indexRouter.post('/post_site/:username', SiteController.createSite)
-indexRouter.get('/all-sites/:username', SiteController.getSites)
+indexRouter.get('/all-sites/:userid', SiteController.getSites)
 
 // User reg
 indexRouter.post('/register', RegisterController.createUser)
@@ -27,6 +27,9 @@ indexRouter.post('/login', AuthController.login)
 indexRouter.post('/register-load/:userid/:requestid', RecordAnalyticsController.registerLoad)
 indexRouter.post('/register-event/:user/:requestid', RecordAnalyticsController.registerClick)
 
+
+//users
+indexRouter.get('/user/profile/:userId',VerifyToken.verifyToken, UserController.getUser);
 
 
 export default indexRouter;

@@ -27,7 +27,6 @@
             "fullname": "Ann Oluchi",
             "username": "Oluchi",
             "email": "Oluchi@gmail.com",
-            "password": "password",
             "createdAt": "2023-06-14T08:00:20.268Z",
             "updatedAt": "2023-06-14T08:00:20.268Z",
             "__v": 0

@@ -33,3 +33,29 @@ The user do not need to type in their email. FE should fill that in from user st
         }
     }
 
+
+### Fetch All Sites Belonging to a User
+    [
+        {
+            "_id": "64849b20326f53c186b9231a",
+            "name": "My company",
+            "url": "www.dexterpharm.com",
+            "owner": "Lucia@gmail.com",
+            "primary": "yes",
+            "deleted": false,
+            "createdAt": "2023-06-10T15:47:44.848Z",
+            "updatedAt": "2023-06-10T15:47:44.848Z",
+            "__v": 0
+        },
+        {
+            "_id": "64849b9bbaf3f55f74226d2c",
+            "name": "My blog",
+            "url": "www.luciablog.com",
+            "owner": "Lucia@gmail.com",
+            "primary": "yes",
+            "deleted": false,
+            "createdAt": "2023-06-10T15:49:47.414Z",
+            "updatedAt": "2023-06-10T15:49:47.414Z",
+            "__v": 0
+        }
+    ]

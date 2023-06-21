@@ -8,6 +8,7 @@
     Headers: 'Accept: application/json',
     Bearer Token: - Token
 **response**  
+
     {
         "_id": "64897393ccec149032214f47",
         "fullname": "Ann Oluchi",
@@ -17,7 +18,7 @@
         "updatedAt": "2023-06-14T08:00:20.268Z",
         "__v": 0
     }  
-    
+
 
 
 
@@ -37,7 +38,8 @@
     }  
 
 
-**response**  
+**response**   
+
     {
         "_id": "64897393ccec149032214f47",
         "fullname": "Ann Oluchi",

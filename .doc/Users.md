@@ -66,15 +66,50 @@
         "email":"email@gmail.com"
     }
 
-**failure response**  
+**failure response**   
+
     {
         "error":"No user found with this email"
-    }
+    }  
 
-**success response**  
+
+**success response**   
+
     {
         "message":"Success message."
-    }
+    }  
 
+
+
+
+
+
+### Edit User Profile 
+
+    Make a get request to this endpoint to change password of logged in user.
+    url: 'https://domainname/change-password/:userid',
+    Method: 'POST',
+    Headers: 'Accept: application/json',
+    Bearer Token: - Token
+    body:
+
+    {
+        "password":"your old password",
+        "newpassword":"New password",
+    }  
+
+
+
+**response**   
+
+  {
+    "error":"Error message for incorrect password"
+  }  
+
+  or 
+
+  {
+    "message":"success password."
+  }  
 
 

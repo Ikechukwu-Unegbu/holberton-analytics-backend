@@ -7,6 +7,7 @@ import UserController from "../Controllers/User/UserController.js";
 import RegisterController from "../Controllers/Auth/RegisterController.js";
 import dbClient from '../Utils/db.js'
 import ReadAnalyticsController from "../Controllers/Core/ReadAnalyticsController.js";
+import PasswordController from "../Controllers/Auth/PasswordController.js";
 const indexRouter = Router()
 
 
@@ -23,7 +24,8 @@ indexRouter.get('/all-sites/:userid', SiteController.getSites)
 // User reg
 indexRouter.post('/register', RegisterController.createUser)
 indexRouter.post('/login', AuthController.login)
-indexRouter.post('/user/edit/:userid', UserController.editUser);
+indexRouter.post('/forgot-password', PasswordController.forgotPassword);
+
 
 // Analytics
 indexRouter.post('/register-load/:userid/:requestid', RecordAnalyticsController.registerLoad)
@@ -32,6 +34,7 @@ indexRouter.get('/analytics/:siteid/:duration', ReadAnalyticsController.fetchAna
 
 //users
 indexRouter.get('/user/profile/:userId',VerifyToken.verifyToken, UserController.getUser);
-
+indexRouter.post('/user/edit/:userid', UserController.editUser);
+indexRouter.post('/change-password/:userid', PasswordController.changePassword);
 
 export default indexRouter;

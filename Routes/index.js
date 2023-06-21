@@ -6,6 +6,7 @@ import AuthController from "../Controllers/Auth/AuthController.js";
 import UserController from "../Controllers/User/UserController.js";
 import RegisterController from "../Controllers/Auth/RegisterController.js";
 import dbClient from '../Utils/db.js'
+import ReadAnalyticsController from "../Controllers/Core/ReadAnalyticsController.js";
 const indexRouter = Router()
 
 
@@ -26,7 +27,7 @@ indexRouter.post('/login', AuthController.login)
 // Analytics
 indexRouter.post('/register-load/:userid/:requestid', RecordAnalyticsController.registerLoad)
 indexRouter.post('/register-event/:user/:requestid', RecordAnalyticsController.registerClick)
-
+indexRouter.get('/analytics/:siteid/:duration', ReadAnalyticsController.fetchAnalyticsRecords)
 
 //users
 indexRouter.get('/user/profile/:userId',VerifyToken.verifyToken, UserController.getUser);

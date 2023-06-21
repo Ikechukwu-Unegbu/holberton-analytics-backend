@@ -6,6 +6,8 @@
     Method: 'GET',
     Headers: 'Accept: application/json',
     Bearer Token: - Token
+
+
 ### Response 
     [
         {

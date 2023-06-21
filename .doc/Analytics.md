@@ -7,6 +7,9 @@
     Headers: 'Accept: application/json',
     Bearer Token: - Token
 
+### Empty response 
+    []
+
 
 ### Response 
     [

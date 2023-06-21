@@ -24,7 +24,7 @@ class UserController {
   async editUser(request, response) {
     try {
       const { userId } = request.params;
-      const { name, email } = request.body;
+      const { name, email, fullname, username } = request.body;
 
       // Fetch the user data from the UserModel using the userId
       const user = await UserModel.findById(userId);
@@ -36,6 +36,8 @@ class UserController {
       // Update the user data
       user.name = name;
       user.email = email;
+      user.fullname = fullname;
+      user.username = username;
 
       // Save the updated user data
       await user.save();

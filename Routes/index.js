@@ -23,6 +23,7 @@ indexRouter.get('/all-sites/:userid', SiteController.getSites)
 // User reg
 indexRouter.post('/register', RegisterController.createUser)
 indexRouter.post('/login', AuthController.login)
+indexRouter.post('/user/edit/:userid', UserController.editUser);
 
 // Analytics
 indexRouter.post('/register-load/:userid/:requestid', RecordAnalyticsController.registerLoad)

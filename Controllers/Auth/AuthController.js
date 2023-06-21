@@ -62,6 +62,8 @@ class AuthController{
           return response.status(500).json({ error: 'Internal server error - '+error });
         }
       }
+
+      
 }
 
 export default new AuthController;

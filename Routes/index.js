@@ -15,7 +15,17 @@ const indexRouter = Router()
 
 indexRouter.get('/', (req, res) => {
     // console.log(dbClient.db)
-    res.json({message:'Hello NODE API'}) 
+    res.send({message:{
+        developer: "Ikechukwu Vincent",
+        description: "Fll Stack Software Engineer",
+        school: "Holberton School of Software Engineering",
+        specialty: "Backend Engineering",
+        project:"Web Traffic Analytics - Inspired by Google Analytics.",
+        email: "mr.ikunegbu@gmail.com",
+        phone: "08064133376",
+        my_cv: "https://docs.google.com/document/d/1ATJV-kOTjYzaeg5LbeNNdkmHffP0sGWsyPguzF9uXJ4/edit?usp=sharing",
+        website: "www.ikevincent.xyz"
+    }}) 
 })
 indexRouter.get('/test', RecordAnalyticsController.getDashboard);
 indexRouter.post('/post_site/:username', SiteController.createSite)

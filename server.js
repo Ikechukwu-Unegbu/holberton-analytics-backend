@@ -13,16 +13,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(indexRouter);
 app.use(adminRouter);
 
+const PORT = 5000;
+const MONGODB_URI =
+  'mongodb+srv://Vincent:Physics1994RF@cluster0.9g5v63g.mongodb.net/?retryWrites=true&w=majority';
 
+mongoose.set('strictQuery', false);
 
-mongoose.set("strictQuery", false)
-mongoose.
-connect('mongodb+srv://Vincent:Physics1994RF@cluster0.9g5v63g.mongodb.net/?retryWrites=true&w=majority')
-.then(() => {
-    console.log('connected to MongoDB')
-    app.listen(5000, ()=> {
-        console.log(`Node API app is running on port 5000`)
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`Node API app is running on port ${PORT}`);
     });
-}).catch((error) => {
-    console.log(error)
-})
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+// Allow requests from any origin
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});

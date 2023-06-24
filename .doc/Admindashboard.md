@@ -150,3 +150,24 @@
             "totalPages": null
         }
     }
+
+
+
+## Get Admin Key Metrics
+    Make a get request to this endpoint
+    url: 'https://domainname/admin/metrics',
+    Method: 'GET',
+    Headers: 'Accept: application/json',
+    Bearer Token: - Token
+
+### Empty response 
+    []
+
+
+### Response
+
+{
+    "totalUsers": 5,
+    "totalSites": 7,
+    "totalAnalytics": 0
+}

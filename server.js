@@ -6,7 +6,11 @@ import adminRouter from './Routes/admin.js';
 
 const app = express();
 
-app.use(cors()); // Enable CORS before any routes
+// app.use(cors()); // Enable CORS before any routes
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+  }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

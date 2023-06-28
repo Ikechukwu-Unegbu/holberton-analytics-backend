@@ -1,4 +1,6 @@
 import SiteModel from "../../Models/Core/SiteModel.js";
+import UserModel from "../../Models/UserModel.js";
+
 
 class AdminSiteController {
 
@@ -78,6 +80,27 @@ class AdminSiteController {
       res.status(500).json({ error: "Failed to update site." });
     }
   }
+
+  async getSiteByUser(req, res) {
+    try {
+      const { userid } = req.params;
+      const user = await UserModel.findById(userid);
+  
+      if (!user) {
+        return res.status(404).json({ error: "User not found." });
+      }
+  
+      const sites = await SiteModel.find({ owner: user.email });
+  
+      res.json(sites);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to get sites by user. ::"+error });
+    }
+  }
+  
+  
+
+
 }
 
 export default new AdminSiteController();

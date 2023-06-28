@@ -27,5 +27,5 @@ class InsightController {
     }
   }
 }
-
+ 
 export default new InsightController();

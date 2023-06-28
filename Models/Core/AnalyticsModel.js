@@ -76,7 +76,32 @@ class Analytics {
             type: Date,
             required: false,
         },
-    })
+    });
+
+    const ExitSchema = new Schema({
+      exitstatus:{
+          type:String, 
+          required:false,
+          default:'no'
+      },
+      exit_number:{
+          type:Number, 
+          required:false,
+          default:0
+      },
+      // deets:{
+      //   type: Schema.Types.Mixed,
+      //   required: true,
+      //   default: [],
+      // },
+      timestamp: {
+        type: Date,
+        required: false,
+        default: null
+      }    
+    });
+
+
 
     const AnalyticsSchema = new Schema(
       {
@@ -98,6 +123,11 @@ class Analytics {
         required: true,
         default: {},
        },
+       exited:{
+        type: Schema.Types.Mixed,
+        required: false,
+        default: {},
+       },
         user_browser:{
           type:String, 
           required:false,
@@ -106,18 +136,16 @@ class Analytics {
           type:String,
           required:false
         },
-        geoLocation: {
-            type: {
-              type: String,
-              enum: ['Point'],
-              required: false,
-            },
-            coordinates: {
-              type: [Number],
-              required: false,
-            },
+        long:{
+          type:String, 
+          required:false,
+        },
+        lat:{
+          type:String, 
+          required:false,
         },
         pages: [PageSchema],
+        exit:[ExitSchema]
 
       },
       {

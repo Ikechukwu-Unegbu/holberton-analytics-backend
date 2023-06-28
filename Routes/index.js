@@ -40,11 +40,13 @@ indexRouter.post('/forgot-password', PasswordController.forgotPassword);
 // Analytics
 indexRouter.post('/register-load/:userid/:requestid', RecordAnalyticsController.registerLoad)
 indexRouter.post('/register-event/:user/:requestid', RecordAnalyticsController.registerClick)
-indexRouter.get('/analytics/:siteid/:duration', ReadAnalyticsController.fetchAnalyticsRecords)
+indexRouter.post('/register-unload/:userid/:siteid', RecordAnalyticsController.registerUnload)
+indexRouter.get('/analytics/:duration/:siteid', ReadAnalyticsController.fetchAnalyticsRecords)
 
 //users
 indexRouter.get('/user/profile/:userId',VerifyToken.verifyToken, UserController.getUser);
 indexRouter.post('/user/edit/:userid', UserController.editUser);
 indexRouter.post('/change-password/:userid', PasswordController.changePassword);
+
 
 export default indexRouter;

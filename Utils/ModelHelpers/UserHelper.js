@@ -13,7 +13,7 @@ class UserHelper{
         }
     }
 
-    checkUserAndSiteExist = async (userId, siteId) => {
+    async checkUserAndSiteExist  (userId, siteId) {
         try {
           const user = await UserModel.findById(userId);
           const site = await SiteModel.findById(siteId);

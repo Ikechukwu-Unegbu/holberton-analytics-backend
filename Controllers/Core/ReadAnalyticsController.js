@@ -2,7 +2,10 @@ import AnalyticsModel from "../../Models/Core/AnalyticsModel.js";
 
 class ReadAnalyticsController {
   async fetchAnalyticsRecords(req, res) {
-    const { siteid, duration } = req.params;
+    const {duration, siteid } = req.params;
+    console.log("duration: ", duration)
+    console.log("siteid: ", siteid)
+
 
     const pageSize = 50; // Number of records per page
     const currentPage = req.query.page || 1; // Current page number

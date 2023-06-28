@@ -1,4 +1,7 @@
 import AnalyticsModel from "../Models/Core/AnalyticsModel.js";
+import fetch from "node-fetch";
+
+
 
 class AnalyticsHelpers{
     checkUrlType(url) {
@@ -92,6 +95,59 @@ class AnalyticsHelpers{
         throw error;
       }
     }
+
+
+   
+  
+    getCityAndCountry(latitude, longitude) {
+      const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+  
+      if (longitude === '' || latitude === '') {
+        return Promise.resolve(['nill', 'nill']);
+      }
+  
+      return fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const address = data.address;
+          const city = address.city;
+          const country = address.country;
+  
+          return [city, country];
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          throw error;
+        });
+    }
+
+    getCityAndCountry(latitude, longitude) {
+      const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+    
+      if (longitude === '' || latitude === '') {
+        return Promise.resolve(['nill', 'nill']);
+      }
+    
+      return fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const address = data.address;
+          const city = address.city || 'nill';
+          const country = address.country || 'nill';
+          return [city, country];
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          return ['nill', 'nill'];
+        });
+    }
+    
+  
+  
+  
+
+  
+  
 }
 
 export default new AnalyticsHelpers();

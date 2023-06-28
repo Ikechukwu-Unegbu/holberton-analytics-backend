@@ -57,6 +57,78 @@ class Analytics {
         // },
     });
 
+    const EventSchema = new Schema({
+      eventType: {
+        type: String,
+        required: true,
+      },
+      timestamp: {
+        type: Date,
+        required: true,
+      },
+      clickCoordinates: {
+        x: {
+          type: Number,
+          required: false,
+          default:0
+        },
+        y: {
+          type: Number,
+          required: false,
+          default:0
+        }
+      },
+      pageURL: {
+        type: String,
+        required: true,
+      },
+      page_title: {
+        type: String,
+        required: false,
+      },
+      downloadURL: {
+        type: String,
+        required: false,
+      },
+      fileName: {
+        type: String,
+        required: false,
+      },
+      fileSize: {
+        type: String,
+        required: false,
+      },
+      fileType: {
+        type: String,
+        required: false,
+      },
+      clickText: {
+        type: String,
+        required: false,
+      },
+      submitFormId: {
+        type: String,
+        required: false,
+      },
+      submitFormData: {
+        type: Schema.Types.Mixed,
+        required: false,
+      },
+      ipAddress: {
+        type: String,
+        required: false,
+      },
+      duration: {
+        type: Number,
+        required: false,
+      },
+    });
+    
+    
+    
+    // const EventModel = mongoose.model('Event', EventSchema);
+    
+
     const RequestSchema = new Schema({
         request_id:{
             type:String, 
@@ -123,11 +195,11 @@ class Analytics {
         required: true,
         default: {},
        },
-       exited:{
-        type: Schema.Types.Mixed,
-        required: false,
-        default: {},
-       },
+      //  exited:{
+      //   type: Schema.Types.Mixed,
+      //   required: false,
+      //   default: {},
+      //  },
         user_browser:{
           type:String, 
           required:false,
@@ -145,7 +217,8 @@ class Analytics {
           required:false,
         },
         pages: [PageSchema],
-        exit:[ExitSchema]
+        exit:[ExitSchema],
+        events:[EventSchema]
 
       },
       {

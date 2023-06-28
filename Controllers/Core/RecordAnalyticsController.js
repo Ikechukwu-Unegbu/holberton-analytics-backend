@@ -11,14 +11,64 @@ class RecordAnalyticsController{
     }
 
 
+    async registerClickEvent(request, response) {
+      const address = request.url;
+      const [accountid, siteid] = AnalyticsHelpers.getUseridAndSiteidFromUrl(address);
+      console.log('event recieved.');
+      const {
+        timestamp,
+        pageURL,
+        page_title,
+        clickCoordinates,
+        elementID,
+        elementText,
+        eventType,
+        requestId
+      } = request.body;
+    
+      try {
+        const analytics = await AnalyticsModel.findOneAndUpdate(
+          {
+            site: siteid,
+            'request.request_id': requestId,
+          },
+          {
+            $push: {
+              events: {
+                eventType: eventType,
+                timestamp: timestamp,
+                // clickCoordinates: clickCoordinates,
+                pageURL: pageURL,
+                page_title: page_title,
+                elementID: elementID,
+                elementText: elementText,
+              },
+            },
+          },
+          {
+            new: true,
+          }
+        );
+    
+        if (!analytics) {
+          console.log('Analytics not found for the given site and requestId.');
+          return response.status(404).json({ error: 'Analytics not found' });
+        }
+    
+        console.log('Event registered successfully.');
+        return response.json({ message: 'Event registered successfully' });
+      } catch (error) {
+        console.error('Failed to register event:', error);
+        return response.status(500).json({ error: 'Failed to register event' });
+      }
+    }
+    
 
     async registerUnload(request, response) {
       const address = request.url;
       const [accountid, siteid] = AnalyticsHelpers.getUseridAndSiteidFromUrl(address);
-      // const { requestId } = request.body;
-      console.log(request.body)
-      console.log("Unload fired")
-      return;
+      const { requestId } = request.body;
+      console.log("page exited");
     
       try {
         const analytic = await AnalyticsModel.findOne({
@@ -27,21 +77,32 @@ class RecordAnalyticsController{
         });
     
         if (analytic) {
-          analytic.exit.exitstatus = 'yes';
-          analytic.exit.exit_number += 1;
-          analytic.exit.timestamp = new Date(); // Set current timestamp
+          if (analytic.exit.length === 0) {
+            // If the exit array is empty, add a new exit object
+            analytic.exit.push({
+              exitstatus: 'yes',
+              exit_number: 1,
+              timestamp: new Date()
+            });
+          } else {
+            // If the exit array already has an item, update the values
+            analytic.exit[0].exitstatus = 'yes';
+            analytic.exit[0].exit_number += 1;
+            analytic.exit[0].timestamp = new Date();
+          }
     
           await analytic.save();
           // return response.json({ message: 'Unload analytics recorded successfully.' });
           return;
         } else {
           console.log('Analytics not found for the given site and requestId.');
-        } 
+        }
       } catch (error) {
         console.error('Error:', error);
         return response.status(500).json({ error: 'Failed to record unload analytics data.' + error });
       }
     }
+    
     
     
 
@@ -149,9 +210,9 @@ class RecordAnalyticsController{
     
       
 
-    registerClick(request, response){
-        console.log(request.body)
-    }
+    // registerClick(request, response){
+    //     console.log(request.body)
+    // }
 }
 
 

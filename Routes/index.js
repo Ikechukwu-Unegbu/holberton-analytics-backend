@@ -39,7 +39,7 @@ indexRouter.post('/forgot-password', PasswordController.forgotPassword);
 
 // Analytics
 indexRouter.post('/register-load/:userid/:requestid', RecordAnalyticsController.registerLoad)
-indexRouter.post('/register-event/:user/:requestid', RecordAnalyticsController.registerClick)
+indexRouter.post('/register-event/:user/:siteid', RecordAnalyticsController.registerClickEvent)
 indexRouter.post('/register-unload/:userid/:siteid', RecordAnalyticsController.registerUnload)
 indexRouter.get('/analytics/:duration/:siteid', ReadAnalyticsController.fetchAnalyticsRecords)
 
